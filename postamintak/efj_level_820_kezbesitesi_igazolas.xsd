@@ -1,0 +1,1973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--EFJ 8.2 - Kézbesítési igazolás-->
+<!--Last modified: 2019-05-20T14:42-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:efj="http://mprt.hu/EFJlevel" xmlns:altova="http://www.altova.com/xml-schema-extensions" elementFormDefault="qualified" attributeFormDefault="unqualified" efj:version="8.2">
+  <!--Root element-->
+  <xs:element name="kezbesitesi_igazolas" type="ct_kezbesitesi_igazolas">
+    <xs:annotation>
+      <xs:documentation>Kézbesítés visszaigazolás</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="alapszolg" type="st_alapszolg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Küldeményfajta kódja.</xs:documentation>
+      <xs:documentation xml:lang="en">Code of item type</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="atvetel" type="ct_atvetel">
+    <xs:annotation>
+      <xs:documentation>Átvételi információ</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="atvetel_jogcim" type="st_atvetel_jogcim">
+    <xs:annotation>
+      <xs:documentation>Átvétel jogcíme</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="atvevo_nev" type="st_cimelem_nev">
+    <xs:annotation>
+      <xs:documentation>Átvevő neve</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="visszakuldes_oka" type="st_visszakuldes_oka">
+    <xs:annotation>
+      <xs:documentation>Visszaküldés oka</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="bekuldes_datuma" type="st_shortdate" efj:deprecated="8.0">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">EFJ beküldésének napja. Nem használt, kizárólag kompatibilitási okokból.</xs:documentation>
+      <xs:documentation xml:lang="en">The date of submitting the EFJ</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_ajto" type="st_cimelem_ajto">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének ajtó része.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s door number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_cim_id" type="st_cimelem_cim_id">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének OECM CímID-ja.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s address identifier</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_email" type="st_email">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett elektronikus címe</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s email address</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_emelet" type="st_cimelem_emelet">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének emelet része.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s floor number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_epulet" type="st_cimelem_epulet">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének épület része.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s building number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_hazszam" type="st_cimelem_hazszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének házszám része.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s street number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_hely" type="st_cimelem_nemz_hely">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">
+        Címzett helység neve.
+        Település neve, pl.: London.
+      </xs:documentation>
+      <xs:documentation xml:lang="en">
+        Addressee's name of settlement.
+        Settlement name, e.g.: London.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_irsz" type="st_cimelem_irszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének irányítószáma.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee's postcode</xs:documentation>
+      <xs:documentation xml:lang="hu">Irányítószám (területi alapú díjazás esetén kötelező)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_kozelebbi_cim" type="st_cimelem_kozelebbi_cim">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">
+        Címzett közelebbi címe.
+        pl. 10 Downing Street.
+      </xs:documentation>
+      <xs:documentation xml:lang="en">
+        Addressee's detailed address.
+        Either the entire detailed address (e.g. Kossuth tér 2) or the parts of the address should be entered.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_kozterulet_jelleg" type="st_cimelem_kozterulet_jelleg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének közterület jellege része.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee street type</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_kozterulet_nev" type="st_cimelem_kozterulet_nev">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett közterület név.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee street name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_lepcsohaz" type="st_cimelem_lepcsohaz">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett címének lépcsőház része.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s stairway number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_nev" type="st_cimelem_nev">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett neve/megnevezése.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_postafiok" type="st_cimelem_postafiok">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett postafiók száma.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s post office box number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="cimzett_telefon" type="st_telefonszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett telefonszáma.</xs:documentation>
+      <xs:documentation xml:lang="en">Addressee’s phone number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="dij" type="st_dij">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladási díj.</xs:documentation>
+      <xs:documentation xml:lang="en">Dispatch charge</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="efj_adatok" type="ct_efj_adatok">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">EFJ feladó technikai adatok</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="efj_gyartokod" type="st_efj_gyartokod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Pl. nyomdák kódja, ha több megállapodásra is szállít.</xs:documentation>
+      <xs:documentation xml:lang="en">For example, codes of printing companies, if several agreements are covered.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="efj_pre_id" type="st_efj_pre_id">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Előrejelzéses állomány beküldésekor visszakapott IKR-es EFJ-azonosító.</xs:documentation>
+      <xs:documentation xml:lang="en">It should be filled in if the value of efj_tipus is „F”, and its value should be the EFJ identifier of IKR.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="efj_szoftver" type="st_efj_szoftver">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Az elektronikus feladójegyzéket készítő neve, a szoftver neve és verziószáma.</xs:documentation>
+      <xs:documentation xml:lang="en">Name of the person creating the electronic posting list, name and version of the software.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="efj_tipus" type="st_efj_tipus" default="F">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladás vagy előrejelzés típusú jegyzék beazonosítására szolgáló mező.</xs:documentation>
+      <xs:documentation xml:lang="en">Field used for identifying a despatch (F) or advance notice (E) type list.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="efj_zaras" type="st_shortdatetime">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">EFJ zárás dátuma és időpontja</xs:documentation>
+      <xs:documentation xml:lang="en">Date and time of closing the EFJ</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="engedelyszam" type="st_engedelyszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">
+        A posta által megadott Bevizsgálási engedély száma.
+        Több azonosító esetén vesszővel kell elválasztani egymástól.
+      </xs:documentation>
+      <xs:documentation xml:lang="en">Number of the Testing licence provided by Magyar Posta</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="eny_osszeg" type="st_eny_osszeg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Értéknyilvánítás összege.</xs:documentation>
+      <xs:documentation xml:lang="en">Value insurance amount</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ertesites" type="ct_ertesites">
+    <xs:annotation>
+      <xs:documentation>Értesítési információk</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_ajto" type="st_cimelem_ajto">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének ajtószám része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s door number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_cim_id" type="st_cimelem_cim_id">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének OECM CímID-ja.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s address identifier</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_email" type="st_email">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó email címe.</xs:documentation>
+      <xs:documentation xml:lang="en">The sender’s email address</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_emelet" type="st_cimelem_emelet">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének emelet része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s floor</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_epulet" type="st_cimelem_epulet">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének épület része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s building (e.g. Building "B")</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_hazszam" type="st_cimelem_hazszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének házszám része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s street number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_hely" type="st_cimelem_hely">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének helység része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender's settlement name</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_irsz" type="st_cimelem_irszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének postai irányítószám része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s postcode</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_kozelebbi_cim" type="st_cimelem_kozelebbi_cim">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">
+        Feladó közelebbi címe.
+        pl. 10 Downing Street.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_kozterulet_jelleg" type="st_cimelem_kozterulet_jelleg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének közterület jellege része.</xs:documentation>
+      <xs:documentation xml:lang="en">Street type (e.g. street, road, square)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_kozterulet_nev" type="st_cimelem_kozterulet_nev">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének közterület név vagy helyrajzi szám része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s street name (e.g. Petőfi)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_lepcsohaz" type="st_cimelem_lepcsohaz">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó címének lépcsőház része.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s stairway (e.g. Stairway “B”)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_megallapodas" type="st_felado_megallapodas">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">A szerződésben szereplő megállapodásszám.</xs:documentation>
+      <xs:documentation xml:lang="en">Agreement number appearing in the contract</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_megjegyzes" type="st_felado_megjegyzes">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó szabadon töltheti, pl.: a feladási adatokat tartalmazó file neve.</xs:documentation>
+      <xs:documentation xml:lang="en">The sender may enter anything, e.g. the file name of the file containing posting data</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_nev" type="st_cimelem_nev">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Természetes, vagy jogi személy elnevezése, akivel szerződéses jogviszonyban áll a Posta.</xs:documentation>
+      <xs:documentation xml:lang="en">Name of an individual or a legal entity with whom/which Posta concluded a contract.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_postafiok" type="st_cimelem_postafiok">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó postafiók száma.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender’s post office box number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_telefon" type="st_telefonszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó telefonszáma.</xs:documentation>
+      <xs:documentation xml:lang="en">The sender's phone number</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felado_vevokod" type="st_felado_vevokod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladó (ügyfél) azonosító.</xs:documentation>
+      <xs:documentation xml:lang="en">Sender (customer) identification</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="gepre_alkalmassag" type="st_gepre_alkalmassag">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Gépi feldolgozásra alkalmas küldemények jelölése.</xs:documentation>
+      <xs:documentation xml:lang="en">Indication of mail items suitable for automated processing.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="hiv_ertesito">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Értesítő száma. Kizárólag hivatalos iratnál, a címzett távolléte esetén otthagyandó értesítés száma/betűjele. Kézbesítéshez szükséges információ, ügyfélnek visszaadni nem kell.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="st_hiv_ertesito"/>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="hiv_irat_fajta" type="st_hiv_irat_fajta">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Hivatalos irat fajtája.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="hiv_iratszam" type="st_hiv_iratszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Hivatalos irat száma.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="idopont" type="st_shortdatetime">
+    <xs:annotation>
+      <xs:documentation>időpont</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="kezb_mod" type="st_kezb_mod" default="HA">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Kézbesítési mód.</xs:documentation>
+      <xs:documentation xml:lang="en">Delivery method</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="kezbesites" type="ct_kezbesites">
+    <xs:annotation>
+      <xs:documentation>Kézbesítési információ</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="kezdoallas" type="st_bermentesito_allas">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Bérmentesítő-gép kezdő állása.</xs:documentation>
+      <xs:documentation xml:lang="en">Start position of franking machine</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="kezelesi_mod" type="st_kezelesi_mod" default="2">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Értéknyilvánítás esetén a kezelési mód.</xs:documentation>
+      <xs:documentation xml:lang="en">Method of treatment</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="konszolidator_feladas" type="st_konszolidator_feladas" default="N">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Konszolidátoros feladás jelzése.</xs:documentation>
+      <xs:documentation xml:lang="en">Despatch with consolidator</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="kulonszolgok" type="st_kulonszolgok">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Többletszolgáltatások.</xs:documentation>
+      <xs:documentation xml:lang="en">Additional services</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="meret" type="st_meret" default="1">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Küldeményméret jelzése.</xs:documentation>
+      <xs:documentation xml:lang="en">Indication of mail item size</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="sajat_azonosito" type="st_sajat_azonosito">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Saját azonosító, megjegyzés.</xs:documentation>
+      <xs:documentation xml:lang="en">Own identifier, comment</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="sorszam" type="st_sorszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladási tétel sorszáma.</xs:documentation>
+      <xs:documentation xml:lang="en">Dispatch item number, strictly incremented by one (starting with 1) for each dispatch entry</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="statusz" type="st_tetel_statusz">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">A küldemény állapota a jegyzék zárásakor</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="felvetel_datum" type="st_shortdate">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">A küldemény felvételi dátuma</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="suly">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">A küldeményfajtára vonatkozó mindenkori díjszabás szerinti súlytartományok felső határa grammban.</xs:documentation>
+      <xs:documentation xml:lang="en">Upper weight limit of the item type's weight ranges according to the tariff, in grams.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="st_suly">
+        <xs:minLength value="1"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="teruleti_tarifa" type="st_teruleti_tarifa">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Területi tarifa.</xs:documentation>
+      <xs:documentation xml:lang="en">Area-based tariff</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_ajto" type="st_cimelem_ajto">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének ajtó része.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_cim_id" type="st_cimelem_cim_id">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének OECM CímID-ja.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_emelet" type="st_cimelem_emelet">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének emelet része.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_epulet" type="st_cimelem_epulet">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének épület része.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_hazszam" type="st_cimelem_hazszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének házszám része.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_hely" type="st_cimelem_hely">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">
+        Tértivevény visszaküldés cím helység neve.
+        Település neve, pl.: London.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_irsz" type="st_cimelem_irszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének irányítószáma.</xs:documentation>
+      <xs:documentation xml:lang="hu">Irányítószám (területi alapú díjazás esetén kötelező)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_kozelebbi_cim" type="st_cimelem_kozelebbi_cim">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">
+        Tértivevény visszaküldés cím közelebbi címe.
+        pl. 10 Downing Street.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_kozterulet_jelleg" type="st_cimelem_kozterulet_jelleg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének közterület jellege része.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_kozterulet_nev" type="st_cimelem_kozterulet_nev">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím közterület név.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_lepcsohaz" type="st_cimelem_lepcsohaz">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím címének lépcsőház része.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_nev" type="st_cimelem_nev">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím természetes, vagy jogi személy elnevezése.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_cimzett_postafiok" type="st_cimelem_postafiok">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés cím postafiók száma.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_mod" type="st_tv_mod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés módja.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_sajat_jelzes" type="st_tv_sajat_jelzes">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Papír alapú visszaküldés esetén ki kell nyomtatni a belföldi tértivevényt helyettesítő nyomtatvány "Ügyfél saját jelzése" rubrikában.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_vonalkod" type="st_vonalkod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Ügyfél saját vonalkódja belföldi tértivevényhez.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="tv_vonalkod_tipus" type="st_vonalkod_tipus">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Vonalkód típusa.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="uv_lapid" type="st_uv_lapid">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">FKK/utánvételi lap bizonylat azonosító száma.</xs:documentation>
+      <xs:documentation xml:lang="en">ID number of the FKK/“cash on delivery“ document</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="uv_osszeg" type="st_uv_osszeg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">FKK/utánvétel összege.</xs:documentation>
+      <xs:documentation xml:lang="en">FKK/amount of cash on delivery</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="vakok_irasa" type="st_vakok_irasa" default="0">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Vakok írása jelzése.</xs:documentation>
+      <xs:documentation xml:lang="en">Indication of literature for the blind</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="varhato_feladas_datum" type="st_shortdate">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladás tervezett időpontja, előrejelzés esetén kötelező.</xs:documentation>
+      <xs:documentation xml:lang="en">Planned date of despatch, mandatory for advance notices.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="varhato_feladas_posta" type="st_varhato_feladas_posta">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Feladás várható helye.</xs:documentation>
+      <xs:documentation xml:lang="en">Planned location of despatch</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="xml_verzio" type="st_xmlversion">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Input XML verziószám x.y</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="xsd_verzio" type="st_xmlversion">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">XSD verziószám x.y formában</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="zaroallas" type="st_bermentesito_allas">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Bérmentesítő-gép záró állása.</xs:documentation>
+      <xs:documentation xml:lang="en">End position of franking machine</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ct_atvetel">
+    <xs:annotation>
+      <xs:documentation>Átvételi információ</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="idopont"/>
+      <xs:element ref="atvevo_nev"/>
+      <xs:element ref="atvetel_jogcim" minOccurs="0"/>
+      <xs:element ref="visszakuldes_oka" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ct_efj_adatok">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">EFJ feladó technikai adatok</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ct_efj_adatokBase">
+        <xs:sequence>
+          <xs:element ref="efj_zaras"/>
+          <xs:element ref="efj_szoftver"/>
+          <xs:element ref="xsd_verzio" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="hu">XSD verziószám x.y formában</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ct_efj_adatokBase">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">EFJ feladó technikai adatok</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="efj_zaras"/>
+      <xs:element ref="efj_szoftver"/>
+      <xs:element ref="efj_tipus" id="efj_tipus" minOccurs="0"/>
+      <xs:element ref="efj_gyartokod" minOccurs="0"/>
+      <xs:element ref="efj_pre_id" minOccurs="0"/>
+      <xs:element ref="xsd_verzio" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">XSD verziószám x.y formában</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="xml_verzio" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Feldolgozó rendszer tölti! Input XML verziószám x.y</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ct_ertesites">
+    <xs:annotation>
+      <xs:documentation>Értesítési információk</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="idopont"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ct_kezbesites">
+    <xs:annotation>
+      <xs:documentation>Kézbesítési információ</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="idopont"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ct_kezbesitesi_igazolas">
+    <xs:annotation>
+      <xs:documentation>Kézbesítés visszaigazolás</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="efj_adatok"/>
+      <xs:element name="felado" type="ct_ugyfel_adatok"/>
+      <xs:element name="kuldemeny" type="ct_nyilvantartott_tetel"/>
+      <xs:element ref="ertesites" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:choice>
+        <xs:element ref="kezbesites"/>
+        <xs:element ref="atvetel"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ct_nyilvantartott_tetel">
+    <xs:annotation>
+      <xs:documentation>Nyilvántartott tétel</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ct_nyilvantartott_tetelBase">
+        <xs:sequence>
+          <xs:element name="azonosito" type="st_belf_kuldemeny_azonosito">
+            <xs:annotation>
+              <xs:documentation xml:lang="hu">Az azonosító töltése szerződéses ügyfelelek esetén kötelező.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element ref="cimzett_nev"/>
+          <xs:element ref="cimzett_irsz"/>
+          <xs:element ref="cimzett_hely"/>
+          <xs:element ref="cimzett_kozelebbi_cim" minOccurs="0"/>
+          <xs:element ref="cimzett_kozterulet_nev" minOccurs="0"/>
+          <xs:element ref="cimzett_kozterulet_jelleg" minOccurs="0"/>
+          <xs:element ref="cimzett_hazszam" minOccurs="0"/>
+          <xs:element ref="cimzett_epulet" minOccurs="0"/>
+          <xs:element ref="cimzett_lepcsohaz" minOccurs="0"/>
+          <xs:element ref="cimzett_emelet" minOccurs="0"/>
+          <xs:element ref="cimzett_ajto" minOccurs="0"/>
+          <xs:element ref="cimzett_postafiok" minOccurs="0"/>
+          <xs:element ref="sajat_azonosito" minOccurs="0"/>
+          <xs:element ref="tv_sajat_jelzes" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="hu">
+                Ügyfél saját jelzése belföldi tértivevényhez.
+                Papír alapú visszaküldés esetén ki kell nyomtatni a belföldi tértivevényt helyettesítő nyomtatvány "Ügyfél saját jelzése" rubrikában.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="tv_vonalkod">
+              <xs:annotation>
+                <xs:documentation xml:lang="hu">
+                  Ügyfél saját vonalkódja belföldi tértivevényhez.
+                  Papír alapú visszaküldés esetén ki kell nyomtatni a belföldi tértivevényt helyettesítő nyomtatvány "Ügyfél saját jelzése" rubrikában.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element ref="tv_vonalkod_tipus"/>
+          </xs:sequence>
+          <xs:element ref="hiv_iratszam" minOccurs="0"/>
+          <xs:element ref="hiv_irat_fajta" minOccurs="0"/>
+          <xs:element ref="hiv_ertesito" minOccurs="0"/>
+          <xs:element ref="felvetel_datum" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ct_nyilvantartott_tetelBase">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Nemzetközi nyilvántartott tétel</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="sorszam" minOccurs="0"/>
+      <xs:element name="azonosito" type="st_belf_kuldemeny_azonosito">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Az azonosító töltése szerződéses ügyfelelek esetén kötelező.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="alapszolg" minOccurs="0"/>
+      <xs:element ref="suly" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Küldemény súlya. A küldeményfajtára vonatkozó mindenkori díjszabás szerinti súlytartományok felső határa grammban. Értéklevél esetén a pontos súlyt kell megadni.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="kulonszolgok" minOccurs="0"/>
+      <xs:element ref="vakok_irasa" minOccurs="0"/>
+      <xs:sequence minOccurs="0">
+        <xs:element ref="uv_osszeg" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="hu">
+              FKK/utánvétel összege.
+              A_117_FKK küldemény esetén kötelező.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="uv_lapid" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="hu">
+              FKK/utánvétel bizonylat azonosító száma.
+              FKK/utánvételi lap bizonylat azonosító száma. A_117_FKK küldemény esetén kötelező.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:element ref="eny_osszeg" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">
+            Értéknyilvánítás összege.
+            Értéknyilvánítás többletszolgáltatás (K_ENY) esetén kötelező.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="kezelesi_mod" minOccurs="0"/>
+      <xs:element ref="meret" minOccurs="0"/>
+      <xs:element ref="kezb_mod" minOccurs="0"/>
+      <xs:element ref="cimzett_nev"/>
+      <xs:element ref="cimzett_irsz" minOccurs="0"/>
+      <xs:element ref="cimzett_hely"/>
+      <xs:element ref="cimzett_kozelebbi_cim" minOccurs="0"/>
+      <xs:element ref="cimzett_kozterulet_nev" minOccurs="0"/>
+      <xs:element ref="cimzett_kozterulet_jelleg" minOccurs="0"/>
+      <xs:element ref="cimzett_hazszam" minOccurs="0"/>
+      <xs:element ref="cimzett_epulet" minOccurs="0"/>
+      <xs:element ref="cimzett_lepcsohaz" minOccurs="0"/>
+      <xs:element ref="cimzett_emelet" minOccurs="0"/>
+      <xs:element ref="cimzett_ajto" minOccurs="0"/>
+      <xs:element ref="cimzett_postafiok" minOccurs="0"/>
+      <xs:element ref="cimzett_cim_id" minOccurs="0"/>
+      <xs:element ref="cimzett_email" minOccurs="0"/>
+      <xs:element ref="cimzett_telefon" minOccurs="0"/>
+      <xs:element ref="dij" minOccurs="0"/>
+      <xs:element ref="sajat_azonosito" minOccurs="0"/>
+      <xs:element ref="gepre_alkalmassag" minOccurs="0"/>
+      <xs:element ref="tv_mod" minOccurs="0"/>
+      <xs:element ref="tv_sajat_jelzes" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">
+            Ügyfél saját jelzése belföldi tértivevényhez.
+            Papír alapú visszaküldés esetén ki kell nyomtatni a belföldi tértivevényt helyettesítő nyomtatvány "Ügyfél saját jelzése" rubrikában.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence minOccurs="0">
+        <xs:element ref="tv_vonalkod">
+          <xs:annotation>
+            <xs:documentation xml:lang="hu">
+              Ügyfél saját vonalkódja belföldi tértivevényhez.
+              Papír alapú visszaküldés esetén ki kell nyomtatni a belföldi tértivevényt helyettesítő nyomtatvány "Ügyfél saját jelzése" rubrikában.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="tv_vonalkod_tipus"/>
+      </xs:sequence>
+      <xs:element ref="hiv_iratszam" minOccurs="0"/>
+      <xs:element ref="hiv_irat_fajta" minOccurs="0"/>
+      <xs:element ref="hiv_ertesito" minOccurs="0"/>
+      <xs:element ref="statusz" minOccurs="0"/>
+      <xs:element ref="felvetel_datum" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ct_ugyfel_adatok">
+    <xs:annotation>
+      <xs:documentation>EFJ feladó adatai</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ct_ugyfel_adatokBase">
+        <xs:sequence>
+          <xs:element ref="felado_megallapodas" minOccurs="0"/>
+          <xs:element ref="felado_nev"/>
+          <xs:element ref="felado_irsz"/>
+          <xs:element ref="felado_hely"/>
+          <xs:element ref="felado_kozelebbi_cim" minOccurs="0"/>
+          <xs:element ref="felado_kozterulet_nev" minOccurs="0"/>
+          <xs:element ref="felado_kozterulet_jelleg" minOccurs="0"/>
+          <xs:element ref="felado_hazszam" minOccurs="0"/>
+          <xs:element ref="felado_epulet" minOccurs="0"/>
+          <xs:element ref="felado_lepcsohaz" minOccurs="0"/>
+          <xs:element ref="felado_emelet" minOccurs="0"/>
+          <xs:element ref="felado_ajto" minOccurs="0"/>
+          <xs:element ref="felado_postafiok" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ct_ugyfel_adatokBase">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">EFJ feladó adatai</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="felado_vevokod" minOccurs="0"/>
+      <xs:element ref="felado_megallapodas" minOccurs="0"/>
+      <xs:element ref="felado_nev"/>
+      <xs:element ref="felado_irsz"/>
+      <xs:element ref="felado_hely"/>
+      <xs:element ref="felado_kozelebbi_cim" minOccurs="0"/>
+      <xs:element ref="felado_kozterulet_nev" minOccurs="0"/>
+      <xs:element ref="felado_kozterulet_jelleg" minOccurs="0"/>
+      <xs:element ref="felado_hazszam" minOccurs="0"/>
+      <xs:element ref="felado_epulet" minOccurs="0"/>
+      <xs:element ref="felado_lepcsohaz" minOccurs="0"/>
+      <xs:element ref="felado_emelet" minOccurs="0"/>
+      <xs:element ref="felado_ajto" minOccurs="0"/>
+      <xs:element ref="felado_postafiok" minOccurs="0"/>
+      <xs:element ref="felado_cim_id" minOccurs="0"/>
+      <xs:sequence minOccurs="0">
+        <xs:element ref="kezdoallas" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="hu">
+              Bérmentesítő géppel történő feladás esetén kötelező.
+              Ha van záróállás, akkor kötelező.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="zaroallas" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="hu">
+              Bérmentesítő géppel történő feladás esetén kötelező.
+              Ha van kezdőállás, akkor kötelező.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:element ref="engedelyszam" minOccurs="0"/>
+      <xs:element ref="felado_email" minOccurs="0"/>
+      <xs:element ref="felado_telefon" minOccurs="0"/>
+      <xs:element ref="varhato_feladas_posta" minOccurs="0"/>
+      <xs:element ref="bekuldes_datuma" minOccurs="0"/>
+      <xs:element ref="varhato_feladas_datum" minOccurs="0"/>
+      <xs:element ref="felado_megjegyzes" minOccurs="0"/>
+      <xs:element ref="konszolidator_feladas" minOccurs="0"/>
+      <xs:element ref="teruleti_tarifa" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_nev" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_irsz" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_hely" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_kozelebbi_cim" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_kozterulet_nev" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_kozterulet_jelleg" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_hazszam" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_epulet" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_lepcsohaz" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_emelet" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_ajto" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_postafiok" minOccurs="0"/>
+      <xs:element ref="tv_cimzett_cim_id" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="bt_alphanum">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">a-z és A-Z karakterek angol abc szerint és számok</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:pattern value="[a-zA-Z0-9]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="bt_num">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">számjegyek</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:pattern value="[0-9]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="bt_num_with_minus1">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="-1"/>
+          <altova:example value="0"/>
+          <altova:example value="1"/>
+          <altova:example value="12"/>
+          <altova:example value="123"/>
+          <altova:example value="1234"/>
+          <altova:example value="12345"/>
+          <altova:example value="123456"/>
+          <altova:example value="12345678"/>
+          <altova:example value="123456789"/>
+          <altova:example value="1234567890"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">számjegyek és -1</xs:documentation>
+      <xs:documentation source="changelog">2018-05-14:defined</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:pattern value="[0-9]*|-1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="bt_positive_num">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">szám, de legalább 1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:pattern value="[1-9][0-9]*"/>
+      <xs:pattern value="[0-9]*" efj:deprecated="8.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="bt_string">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">szöveg</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_alapszolg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Alapszolgáltatás</xs:documentation>
+      <xs:documentation source="changelog">2018-05-28:A_111_LER; A_114_KRK; A_117_ULR; A_114_UDR értékekkel való bővítés</xs:documentation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="A_111_LEV"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="7"/>
+      <xs:maxLength value="9"/>
+      <xs:enumeration value="A_15_HIV">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Hivatalos irat; Viszonlyat: Belföld; Megjegyzés: K_AJN, K_TEV többletszolgáltatás jelzése kötelező</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_111_LEV">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Levél; Viszonlyat: Belföld, Külföld</xs:documentation>
+          <xs:documentation xml:lang="en">Letter; Destination: Domestic, international</xs:documentation>
+          <xs:documentation xml:lang="hu">Vakok írása; Viszonlyat: Belföld, Külföld; Megjegyzés: Jelzése vakok_irasa mezőben</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_111_LER">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Azonosított levél: Belföld</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_111_LLP">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Levelezőlap, Képes levelezőlap; Viszonlyat: Belföld, Külföld</xs:documentation>
+          <xs:documentation xml:lang="en">Postcard, picture postcard; Destination: Domestic, international</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_112_NYT">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">"M" zsák; Viszonlyat: Külföld</xs:documentation>
+          <xs:documentation xml:lang="en">"M" sack; Destination: International</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_114_KCR">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Szerződéses-kedvezményes címzett reklámküldemény; Viszonlyat: Belföld</xs:documentation>
+          <xs:documentation xml:lang="en">Discount direct mail by contract (DDM); Destination: Domestic</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_114_KRK">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Azonosított címzett reklámküldemény; Viszonlyat: Belföld</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_114_UDM">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Üzleti DME; Viszonlyat: Belföld</xs:documentation>
+          <xs:documentation xml:lang="en">Business DME; Destination: Domestic</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_114_UDR">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Azonosított üzleti DME; Viszonlyat: Belföld</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_116_FLX">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Flexi-Üzleti levél; Viszonlyat: Külföld</xs:documentation>
+          <xs:documentation xml:lang="en">Flexi Business letter; Destination: International</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_117_CKL">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Címzett kezébe levél; Viszonlyat: Belföld</xs:documentation>
+          <xs:documentation xml:lang="en">Letter delivered to the addressee only; Destination: Domestic</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_117_FKK">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Fizetést követő kézbesítés; Viszonlyat: Belföld</xs:documentation>
+          <xs:documentation xml:lang="en">Delivery after payment; Destination: Domestic</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_117_ULR">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Azonosított üzleti levél; Viszonlyat: Belföld</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_117_ULV">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Üzleti levél; Viszonlyat: Belföld</xs:documentation>
+          <xs:documentation xml:lang="en">Business letter; Destination: Domestic</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_118_NDL">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Nemzetközi direkt levél; Viszonlyat: Külföld</xs:documentation>
+          <xs:documentation xml:lang="en">International direct letter; Destination: International</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_161_LEV">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Válaszlevél; Viszonlyat: Belföld; Megjegyzés: Az alapszolgáltatás kód nem használható közönséges küldeményekhez az elektronikus feladó-jegyzéken (a közönséges válaszküldeményt nem szabad feladójegyzékbe rögzíteni.).</xs:documentation>
+          <xs:documentation xml:lang="en">Reply letter; Destination: Domestic</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_161_LLP">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Válasz levelezőlap; Viszonlyat: Belföld</xs:documentation>
+          <xs:documentation xml:lang="en">Response card; Destination: Domestic</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A_119_PRI">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Nemzetközi PRIME Levél</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_atvetel_jogcim">
+    <xs:annotation>
+      <xs:documentation>Átvétel jogcíme</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="C">
+        <xs:annotation>
+          <xs:documentation>Címzett</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="M">
+        <xs:annotation>
+          <xs:documentation>Meghatalmazott</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="H">
+        <xs:annotation>
+          <xs:documentation>Helyettes átvevő</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="K">
+        <xs:annotation>
+          <xs:documentation>Közvetett kézbesítő</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_visszakuldes_oka">
+    <xs:annotation>
+      <xs:documentation>Visszaküldés oka</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="C">
+        <xs:annotation>
+          <xs:documentation>Cím nem azonosítható</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="I">
+        <xs:annotation>
+          <xs:documentation>Címzett ismeretlen</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="A">
+        <xs:annotation>
+          <xs:documentation>Kézbesítés akadályozott</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="N">
+        <xs:annotation>
+          <xs:documentation>Nem kereste</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="E">
+        <xs:annotation>
+          <xs:documentation>Elköltözött</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="M">
+        <xs:annotation>
+          <xs:documentation>Átvételt megtagadta</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="B">
+        <xs:annotation>
+          <xs:documentation>Bejelentve: meghalt, megszűnt</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_belf_kuldemeny_azonosito">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Belföldi küldeményazonosító.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_alphanum">
+      <xs:pattern value="[0-9a-zA-Z]{16}"/>
+      <xs:pattern value="[0-9a-zA-Z]{13,16}" efj:deprecated="8.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_bermentesito_allas">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value="1"/>
+          <altova:example value="12"/>
+          <altova:example value="123"/>
+          <altova:example value="1234"/>
+          <altova:example value="12345"/>
+          <altova:example value="123456"/>
+          <altova:example value="1234567"/>
+          <altova:example value="12345678"/>
+          <altova:example value="123456789"/>
+          <altova:example value="1234567890"/>
+          <altova:example value="0000000000"/>
+          <altova:example value="0000000001"/>
+          <altova:example value="1234567890"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Bérmentesítő géppel történő feladás esetén kötelező. Ha van záróállás, akkor kötelező.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_ajto">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value=" "/>
+          <altova:example value="  1 "/>
+          <altova:example value="  A "/>
+          <altova:example value="  103 "/>
+          <altova:example value="  555/888 "/>
+          <altova:example value="  piros "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Ajtó címelem</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_cim_id">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címazonosító</xs:documentation>
+      <xs:documentation source="changelog">2018-05-14:-1 érték engedélyezése</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num_with_minus1">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_emelet">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value=" "/>
+          <altova:example value="  1 "/>
+          <altova:example value="  1. "/>
+          <altova:example value="  első "/>
+          <altova:example value="félemelet "/>
+          <altova:example value="  teteje "/>
+          <altova:example value="  alja "/>
+          <altova:example value="  pince "/>
+          <altova:example value="mélygarázs"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Címelem emelet</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_epulet">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="   "/>
+          <altova:example value="  A "/>
+          <altova:example value="A   épület"/>
+          <altova:example value="  A   ép. "/>
+          <altova:example value="  1 "/>
+          <altova:example value=" középsőbb"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Címelem épület (pl.: B épület)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_hazszam">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value=" "/>
+          <altova:example value="1"/>
+          <altova:example value=" 2 "/>
+          <altova:example value=" 2/1 "/>
+          <altova:example value=" 2/B "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Címelem házszám</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_hely">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="  ab "/>
+          <altova:example value="  00 "/>
+          <altova:example value="Budapest"/>
+          <altova:example value=" London "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Település neve</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_irszam">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="0000"/>
+          <altova:example value="1234"/>
+          <altova:example value="9999"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Címelem (feladó, címzett) magyarországi irányítószám</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:length value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_kozelebbi_cim">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=" Kossuth tér 2. "/>
+          <altova:example value=" Wall Street 2. "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Vagy a közelebbi cím egyben (pl. Kossuth tér 2), vagy a bontott cím megadása kötelező.</xs:documentation>
+      <xs:documentation xml:lang="hu">A közelebbi cím egyben (pl. Wall street 2).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_kozterulet_jelleg">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value=" "/>
+          <altova:example value=" út "/>
+          <altova:example value=" utca "/>
+          <altova:example value=" vasútállomás "/>
+          <altova:example value=" ABC mellett "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Címelem közterület jellege (pl. utca, út, tér)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="80"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_kozterulet_nev">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value=" "/>
+          <altova:example value=" első "/>
+          <altova:example value=" Petőfi "/>
+          <altova:example value=" 1. "/>
+          <altova:example value=" hrsz 123456 "/>
+          <altova:example value=" hrsz        123456 "/>
+          <altova:example value=" hrsz / 123456 "/>
+          <altova:example value=" hrsz:123456 "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Címelem közterület név (pl.: Petőfi, HRSZ123456)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="80"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_lepcsohaz">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címelem lépcsőház (pl.: B lépcsőház)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_nemz_hely">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="  ab "/>
+          <altova:example value="  00 "/>
+          <altova:example value="Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"/>
+          <altova:example value=" London "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Nemzetközi település neve</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_nev">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Címzett, feladó neve</xs:documentation>
+      <xs:documentation xml:lang="hu">Természetes, vagy jogi személy elnevezése, akivel szerződéses jogviszonyban áll a Posta.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="150"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_cimelem_postafiok">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value=" "/>
+          <altova:example value=" 123 "/>
+          <altova:example value=" pf.123 "/>
+          <altova:example value=" PF:123 "/>
+          <altova:example value=" Pf./123 "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Címelem postafiók száma</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_dij">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="0"/>
+          <altova:example value="12"/>
+          <altova:example value="123"/>
+          <altova:example value="1234"/>
+          <altova:example value="12345"/>
+          <altova:example value="123456"/>
+          <altova:example value="1234567"/>
+          <altova:example value="12345678"/>
+          <altova:example value="123456789"/>
+          <altova:example value="999999999"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Feladási díj</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:maxLength value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_efj_gyartokod">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value="1"/>
+          <altova:example value="12"/>
+          <altova:example value="123"/>
+          <altova:example value="1234"/>
+          <altova:example value="1234"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">pl. nyomdák kódja, ha több megállapodásra is szállít.</xs:documentation>
+      <xs:documentation xml:lang="en">For example, codes of printing companies, if several agreements are covered.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_efj_pre_id">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">efj_tipus „F” értéke esetén töltendő, értéke az előrejelzéses állomány beküldésekor visszakapott IKR-es EFJ-azonosító.</xs:documentation>
+      <xs:documentation xml:lang="en">It should be filled in if the value of efj_tipus is „F”, and its value should be the EFJ identifier of IKR.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_efj_szoftver">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="  Valami kft.    "/>
+          <altova:example value="Valami kft."/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Az elektronikus feladójegyzéket készítő neve, a szoftver neve és verziószáma</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_efj_tipus">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Jegyzék típus</xs:documentation>
+      <xs:documentation xml:lang="en">EFJ type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="E">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Előrejelzés típusú jegyzék.</xs:documentation>
+          <xs:documentation xml:lang="en">Advance notice type list.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="F">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Feladás típusú jegyzék.</xs:documentation>
+          <xs:documentation xml:lang="en">Despatch type list.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="" efj:deprecated="8.0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Használatát kérjük mellőzni. Helyette használja az "F" értéket. Feladás típusú jegyzéknek minősül.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_email">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value="a@b.cc"/>
+          <altova:example value="a@b.hotel"/>
+          <altova:example value="a-b@b.hotel"/>
+          <altova:example value="alma.po_nt-b@b.hotel"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">email cím</xs:documentation>
+      <xs:documentation source="changelog">2018-05-28:XSD pontosítása</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="60"/>
+      <xs:pattern value="([a-zA-Z0-9]+)([\._\-]([a-zA-Z0-9]+))*[@]([a-zA-Z0-9]+)([\._\-]([a-zA-Z0-9]+))*[\.]([a-zA-Z0-9]){2,}"/>
+      <xs:pattern value=".*" efj:deprecated="8.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_engedelyszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">A posta által megadott Bevizsgálási engedély száma</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_eny_osszeg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Értéknyilvánítás többletszolgáltatás (K_ENY) esetén kötelező</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:maxLength value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_felado_megallapodas">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">A szerződésben szereplő megállapodásszám</xs:documentation>
+      <xs:documentation xml:lang="en">Agreement number appearing in the contract</xs:documentation>
+      <xs:documentation xml:lang="hu">Megállapodásszám (csak szerződéses ügyfeleknél)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:length value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_felado_megjegyzes">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value=" "/>
+          <altova:example value=" valami megjegyzés! "/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Feladó szabadon töltheti, pl.: a feladás adatokat tartalmazó fájl neve</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_felado_vevokod">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="1234567890"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Feladó (ügyfél) azonosító</xs:documentation>
+      <xs:documentation xml:lang="en">Sender (customer) identification</xs:documentation>
+      <xs:documentation xml:lang="hu">Feladó (ügyfél) azonosító - szerződéses ügyfélnél marad a vevőkód, készpénzesnél technikai vevőkód</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:length value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_gepre_alkalmassag">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Gépi feldolgozásra alkalmas küldemények jelölésére. K_FEL többletszolgáltatás esetén kötelező. Ha a többletszolgáltatások között szerepel a K_FEL, de a „gepre_alkalmassag” mező nincs megadva, akkor a rendszer a küldeményt hibásnak jelöli.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="G"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value=""/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_hiv_ertesito">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Hivatalos irat esetén kötelező. Kizárólag hivatalos iratnál, a címzett távolléte esetén otthagyandó értesítés száma/betűjele. Kézbesítéshez szükséges információ, ügyfélnek visszaadni nem kell. Előre definiált készletből választhat az ügyfél.</xs:documentation>
+      <xs:documentation source="changelog">2018-05-23:Értékek megduplázása "." karakterrel a végén.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10"/>
+      <xs:whiteSpace value="preserve"/>
+      <xs:enumeration value="A/1"/>
+      <xs:enumeration value="A/1."/>
+      <xs:enumeration value="A/1/SK"/>
+      <xs:enumeration value="A/1/SK."/>
+      <xs:enumeration value="A/2"/>
+      <xs:enumeration value="A/2."/>
+      <xs:enumeration value="A/3"/>
+      <xs:enumeration value="A/3."/>
+      <xs:enumeration value="A/4"/>
+      <xs:enumeration value="A/4."/>
+      <xs:enumeration value="A/5"/>
+      <xs:enumeration value="A/5."/>
+      <xs:enumeration value="A/6"/>
+      <xs:enumeration value="A/6."/>
+      <xs:enumeration value="A/7"/>
+      <xs:enumeration value="A/7."/>
+      <xs:enumeration value="A/7/2"/>
+      <xs:enumeration value="A/7/2."/>
+      <xs:enumeration value="A/8"/>
+      <xs:enumeration value="A/8."/>
+      <xs:enumeration value="A/9"/>
+      <xs:enumeration value="A/9."/>
+      <xs:enumeration value="A/10"/>
+      <xs:enumeration value="A/10."/>
+      <xs:enumeration value="A/10/SK"/>
+      <xs:enumeration value="A/10/SK."/>
+      <xs:enumeration value=""/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_hiv_irat_fajta">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Hivatalos irat fajtája</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_hiv_iratszam">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Hivatalos irat száma</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_kezb_mod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Kézbesítési mód.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HA">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Házhoz kézbesítés.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Értelmezése "HA", házhoz kézbesítés.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PM" efj:deprecated="8.0"/>
+      <xs:enumeration value="PP" efj:deprecated="8.0"/>
+      <xs:enumeration value="CS" efj:deprecated="8.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_kezelesi_mod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Kezelési mód (csak értéknyilvánítás esetében)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Nincs értéknyilvánítás</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Értéknyilvánítás esetén</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="" efj:deprecated="8.0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Használatát kérjük mellőzni. Helyette használja az "2" értéket. Nincs értéknyilvántartás.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_konszolidator_feladas">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Amennyiben konszolidátoros a feladás „I” értéket kell megadni, az üres mező értelmezése „N”</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="I">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Igen, konszolidátoros feladás.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="N">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Nem konszolidátoros feladás.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="" efj:deprecated="8.0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Használatát kérjük mellőzni. Helyette használja az "N" értéket. Nem konszolidátoros feladás.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_kulonszolgok">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value="K_AJN"/>
+          <altova:example value="K_AJN,K_TEV"/>
+          <altova:example value="K_REG,K_ETV,K_TEV"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Többletszolgáltatás esetén az adathossz legkevesebb 5 karakter (1 többletszolgáltatás kódja), több kód esetén egymástól vesszővel kell elválasztani.</xs:documentation>
+      <xs:documentation source="changelog">2018-05-15:K_PSZ különszolg felvétele</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:pattern value="(K_AJN|K_TEV|K_ENY|K_UVT|K_EFF|K_FEL|K_ETV|K_AMF|K_PRI|K_LEZ|K_SKZ|K_REG|K_EFC|K_VNY|K_POT|K_VER|K_PSZ)?(,(K_AJN|K_TEV|K_ENY|K_UVT|K_EFF|K_FEL|K_ETV|K_AMF|K_PRI|K_LEZ|K_SKZ|K_REG|K_EFC|K_VNY|K_POT|K_VER|K_PSZ))*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_meret">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Szabvány méret. Levél, Flexi-Üzleti levél, KDM, Nemzetközi direkt levél.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Egyéb nem szabvány méret. Levél, nyomtatvány, Flexi-Üzleti levél, KDM, nemzetközi direkt levél.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="L">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Flexi-Üzleti levél méret. Flexi-Üzleti levél, Nemzetközi direkt levél.</xs:documentation>
+          <xs:documentation source="deprecated:8.0">Flexi-Üzleti levél levelezőlap méret. Flexi-Üzleti levél, Nemzetközi direkt levél.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="" efj:deprecated="8.0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Használatát kérjük mellőzni. Helyette használja az "1" értéket.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_sajat_azonosito">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Saját azonosító, megjegyzés</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_shortdate">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value="000101"/>
+          <altova:example value="990231"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Dátum ééhhnn formában</xs:documentation>
+      <xs:documentation source="changelog">2018-05-14:Üres mező definiálása más módon</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:pattern value="[0-9]{2}((0[1-9])|(1[012]))((0[1-9])|([12][0-9])|(3[01]))|.{0}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_shortdatetime">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Dátum és időpont</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([0-9]{2})((0[1-9])|(1[012]))((0[1-9])|([12][0-9])|(3[01]))_((0[0-9])|(1[0-9])|(2[0123]))([0-5][0-9])([0-5][0-9])"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_sorszam">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="1"/>
+          <altova:example value="12"/>
+          <altova:example value="123"/>
+          <altova:example value="1234"/>
+          <altova:example value="12345"/>
+          <altova:example value="123456"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Feladási tétel sorszáma</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_positive_num">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_suly">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="1"/>
+          <altova:example value="12"/>
+          <altova:example value="123"/>
+          <altova:example value="1234"/>
+          <altova:example value="12345"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">A küldeményfajtára vonatkozó mindenkori díjszabás szerinti súlytartományok felső határa grammban. Üres méret mező esetén kötelező. Értéklevél esetén a pontos súlyt kell megadni.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_positive_num">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_telefonszam">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value=""/>
+          <altova:example value="+36"/>
+          <altova:example value="+361-1234567"/>
+          <altova:example value="+3629-123456"/>
+          <altova:example value="+3670-1234567"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">Telefonszám</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:maxLength value="25"/>
+      <xs:pattern value="[+]36((1-[0-9]{7})|([2-9][0-9]{1}-[0-9]{6,7}))"/>
+      <xs:pattern value=".*" efj:deprecated="8.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_teruleti_tarifa">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Területi tarifa esetén kötelező</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TERT"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_tetel_statusz">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">tétel státusz</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Rendben"/>
+      <xs:enumeration value="Törölt"/>
+      <xs:enumeration value="Többlet"/>
+      <xs:enumeration value="Módosított"/>
+      <xs:enumeration value="Hiány"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_tv_mod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tértivevény visszaküldés módja.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Papír nyomtatása</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">FTP szerver</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">e-mail-ben küldünk egy linket</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Hivatali Kapu</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="5">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">posta.hu</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="" efj:deprecated="8.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_tv_sajat_jelzes">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Papír alapú visszaküldés esetén ki kell nyomtatni a belföldi tértivevényt helyettesítő nyomtatvány "Ügyfél saját jelzése" rubrikában.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_uv_lapid">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">
+        FKK/utánvételi lap bizonylat azonosító száma.
+        A_117_FKK küldemény esetén kötelező.
+        Felépítése:
+        1-13. pozíció: számjegyek
+        1-2.: tc kód
+        3.-5.: gyártókód
+        6.-13.: azonosítószám
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:length value="13"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_uv_osszeg">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">A_117_FKK küldemény esetén kötelező (egész szám).</xs:documentation>
+      <xs:documentation xml:lang="hu">K_UVT többletszolgáltatás esetén kötelező, az ország pénzneme szerint (egész szám).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:maxLength value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_vakok_irasa">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Vakok írásának jelzése.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Nem vakok írása.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Vakok írása.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="" efj:deprecated="8.0">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Használatát kérjük mellőzni. Helyette használja az "0" értéket. Nem vakok írása.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_varhato_feladas_posta">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Tervezett feladási hely</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bt_num">
+      <xs:maxLength value="6"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_vonalkod">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Vonalkód értéke</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_vonalkod_tipus">
+    <xs:annotation>
+      <xs:documentation xml:lang="hu">Vonalkód típus</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Code 128</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">Code 39</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation xml:lang="hu">QR</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value=""/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="st_xmlversion">
+    <xs:annotation>
+      <xs:appinfo>
+        <altova:exampleValues>
+          <altova:example value="8.0"/>
+          <altova:example value="8901234.0123456789"/>
+        </altova:exampleValues>
+      </xs:appinfo>
+      <xs:documentation xml:lang="hu">XSD séma/XML üzenet verziószáma, az egyértelmű struktúra verzió megkülönböztetés érdekében.</xs:documentation>
+      <xs:documentation source="changelog">2018-05-28:XSD pontosítása</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{1,10}[\.][0-9]{1,10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

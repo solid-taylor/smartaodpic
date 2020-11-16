@@ -2,22 +2,7 @@ import PyPDF2
 from os import listdir
 from os.path import isfile, join
 from os import walk
-
-
-mypath = 'P:\\Temp\\Tapio_Develop\\receipt\\'
-
-onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-
-for f in onlyfiles:
-    extractAttachments(mypath, f)
-
-''' f = []
-for (dirpath, dirnames, filenames) in walk(mypath):
-    #f.extend(filenames)
-    extractAttachments(mypath, filenames)
-    break '''
-
-
+import sys
 
 def getAttachments(reader):
     """
@@ -43,9 +28,24 @@ def extractAttachments(path, filename):
     handler = open(path + filename, 'rb')
     reader = PyPDF2.PdfFileReader(handler)
     dictionary = getAttachments(reader)
-    print(dictionary)
+    #print(dictionary)
     for fName, fData in dictionary.items():
-        with open(path + filename + '_' + fName, 'wb') as outfile:
+        with open(path + filename[:-4] + '_' + fName, 'wb') as outfile:
             outfile.write(fData)
 
 
+if (len(sys.argv) != 2):
+    print("Usage: exract.py string:path_of_files_to_check\n")
+    raise SystemExit
+
+#mypath = 'P:\\Temp\\Tapio_Develop\\receipt\\'
+mypath = sys.argv[1]
+mypath = mypath.replace('\\\\', '\\')
+
+onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+
+
+for f in onlyfiles:
+    extractAttachments(mypath, f)
+    
