@@ -44,8 +44,5 @@ mypath = mypath.replace('\\\\', '\\')
 
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-
-
 for f in onlyfiles:
     extractAttachments(mypath, f)
-    
