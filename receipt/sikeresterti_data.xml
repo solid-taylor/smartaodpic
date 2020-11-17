@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kezbesitesi_igazolas xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<efj_adatok>
+		<efj_zaras>200731_134927</efj_zaras>
+		<efj_szoftver>eKR 2.0.11.0</efj_szoftver>
+		<xsd_verzio>8.2</xsd_verzio>
+	</efj_adatok>
+	<felado>
+		<felado_megallapodas>10461256</felado_megallapodas>
+		<felado_nev>Magyar Posta Zrt.</felado_nev>
+		<felado_irsz>1138</felado_irsz>
+		<felado_hely>Budapest</felado_hely>
+		<felado_kozterulet_nev>Dunavirág</felado_kozterulet_nev>
+		<felado_kozterulet_jelleg>utca</felado_kozterulet_jelleg>
+		<felado_hazszam>2 -6</felado_hazszam>
+	</felado>
+	<kuldemeny>
+		<azonosito>RL17400016557970</azonosito>
+		<cimzett_nev>Magyar Posta</cimzett_nev>
+		<cimzett_irsz>1138</cimzett_irsz>
+		<cimzett_hely>Budapest</cimzett_hely>
+		<cimzett_kozterulet_nev>Dunavirág</cimzett_kozterulet_nev>
+		<cimzett_kozterulet_jelleg>utca</cimzett_kozterulet_jelleg>
+		<cimzett_hazszam>2-6</cimzett_hazszam>
+		<tv_sajat_jelzes>tv saját jelzés</tv_sajat_jelzes>
+		<felvetel_datum>200730</felvetel_datum>
+	</kuldemeny>
+	<atvetel>
+		<idopont>200731_114203</idopont>
+		<atvevo_nev>Posta Pista</atvevo_nev>
+		<atvetel_jogcim>M</atvetel_jogcim>
+	</atvetel>
+</kezbesitesi_igazolas>

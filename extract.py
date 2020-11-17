@@ -3,6 +3,13 @@ from os import listdir
 from os.path import isfile, join
 from os import walk
 import sys
+import xml.etree.ElementTree as ET
+
+
+""" TODO: import this module, otherwise it's not safe
+import defusedxml
+import defusedxml.ElementTree as ET """
+
 
 def getAttachments(reader):
     """
@@ -23,15 +30,22 @@ def getAttachments(reader):
             attachments[name] = fData
     return attachments
 
-
 def extractAttachments(path, filename):
     handler = open(path + filename, 'rb')
     reader = PyPDF2.PdfFileReader(handler)
     dictionary = getAttachments(reader)
     #print(dictionary)
     for fName, fData in dictionary.items():
-        with open(path + filename[:-4] + '_' + fName, 'wb') as outfile:
+        oFileName = path + filename[:-4] + '_' + fName
+        with open(oFileName, 'wb') as outfile:
             outfile.write(fData)
+        if (fName[-3:].lower() == 'xml'):
+            handle_xml(oFileName)
+            
+def handle_xml(iFileName):
+    tree = ET.parse(iFileName)
+    root = tree.getroot()
+    pass
 
 
 if (len(sys.argv) != 2):
