@@ -4,13 +4,10 @@ from os.path import isfile, join
 from os import walk
 import sys
 import xml.etree.ElementTree as ET
-from xmlutils import xml2sql
-
 
 """ TODO: import this module, otherwise it's not safe
 import defusedxml
 import defusedxml.ElementTree as ET """
-
 
 def getAttachments(reader):
     """
@@ -54,7 +51,6 @@ def handle_xml(iFileName):
         return True
     else:
         return False
-
 
 if (len(sys.argv) != 2):
     print("Usage: exract.py string:path_of_files_to_check\n")
