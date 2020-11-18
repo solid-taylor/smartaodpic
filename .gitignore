@@ -1,6 +1,9 @@
-.vscode/
-ugyfelek/
-.local_misc/
-receipt2/
+.vscode
+ugyfelek
+.local_misc
+receipt2
+__pycache__
+extract
+pyint_work
 data.xml
 .gitignore

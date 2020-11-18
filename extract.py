@@ -1,5 +1,6 @@
 import PyPDF2
-from os import listdir, remove
+import os
+from os import listdir, remove, path
 from os.path import isfile, join
 from os import walk
 import hashlib
@@ -33,7 +34,7 @@ def getAttachments(reader):
 def extractAttachments(path, filename, cleanup_after):
     if (filename[-3:].lower() == 'pdf'):
         handler = open(path + filename, 'rb')
-        reader = PyPDF2.PdfFileReader(handler)
+        reader = PyPDF2.PdfFileReader(handler, strict=False)
         dictionary = getAttachments(reader)
         for fName, fData in dictionary.items():
             oFileName = path + filename[:-4] + '_' + fName
@@ -102,17 +103,20 @@ def table2csv(iTbl, iColnames, oFilename):
     return True
 
 if (len(sys.argv) != 2):
-    print("No path specified! ---- Usage: exract.py path_of_files_to_check\n")
-    raise SystemExit
+    mypath, myfilename = os.path.split(os.path.abspath(__file__))
+    #print("No path specified! ---- Usage: exract.py path_of_files_to_check\n")
+    #raise SystemExit
+    mypath = mypath + '\\'
+else:
+    mypath = sys.argv[1]
+    mypath = mypath.replace('\\\\', '\\')
 
-mypath = sys.argv[1]
-mypath = mypath.replace('\\\\', '\\')
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 c=0
 tbl=[]
 colnames={}
 for f in onlyfiles:
-    c += extractAttachments(mypath, f, False)  # set the last param to True if you want the temporary xml files to be deleted
+    c += extractAttachments(mypath, f, True)  # set the last param to False if you want the see the temporary xml files
 print('Total of ' + str(c) +' .pdf files handled in the directory: ' )
 colnames['file_id'] = c
 colnames['file_source'] = c
@@ -121,3 +125,5 @@ success = table2csv(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%
 
 ##TODO: data --> SQL
 ##TODO: get the cleanupafter prop as (command-line) arg
+##TODO: excel export: https://www.geeksforgeeks.org/writing-excel-sheet-using-python/ VAGY https://xlsxwriter.readthedocs.io/ kerdes, hogy melyik more lightweight
+##TODO: encrypted exe translation
