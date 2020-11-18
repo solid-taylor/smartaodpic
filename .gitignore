@@ -1,7 +1,6 @@
 .vscode/
-.vscode/launch.json
-.vscode/settings.json
 ugyfelek/
-.vscode/launch.json
-.vscode/settings.json
+.local_misc/
+receipt2/
+data.xml
 .gitignore
