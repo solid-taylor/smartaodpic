@@ -1,6 +1,7 @@
 .vscode/
 .vscode/launch.json
 .vscode/settings.json
-tapio_ugyfelek/
+ugyfelek/
 .vscode/launch.json
 .vscode/settings.json
+.gitignore

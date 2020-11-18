@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kezbesitesi_igazolas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="efj_level_820_kezbesitesi_igazolas.xsd">
+  <efj_adatok>
+    <efj_zaras>190325_134759</efj_zaras>
+    <efj_szoftver>eKR 0.0.0.0</efj_szoftver>
+    <xsd_verzio>8.2</xsd_verzio>
+  </efj_adatok>
+  <felado>
+	<felado_megallapodas>12345678</felado_megallapodas>
+	<felado_nev>Kiss Zoltán</felado_nev>
+	<felado_irsz>1036</felado_irsz>
+	<felado_hely>Budapest</felado_hely>
+	<felado_kozelebbi_cim></felado_kozelebbi_cim>
+	<felado_kozterulet_nev>Árpád fejedelem</felado_kozterulet_nev>
+	<felado_kozterulet_jelleg>útja</felado_kozterulet_jelleg>
+	<felado_hazszam>82.</felado_hazszam>
+	<felado_epulet></felado_epulet>
+    <felado_lepcsohaz></felado_lepcsohaz>
+	<felado_emelet>fszt.</felado_emelet>
+	<felado_ajto>2.</felado_ajto>
+    <felado_postafiok></felado_postafiok>
+  </felado>
+  <kuldemeny>
+	<azonosito>RB23091000046669</azonosito>
+	<cimzett_nev>Kovács István</cimzett_nev>
+	<cimzett_irsz>1376</cimzett_irsz>
+	<cimzett_hely>Budapest</cimzett_hely>
+	<cimzett_kozelebbi_cim></cimzett_kozelebbi_cim>
+    <cimzett_kozterulet_nev></cimzett_kozterulet_nev>
+    <cimzett_kozterulet_jelleg></cimzett_kozterulet_jelleg>
+    <cimzett_hazszam></cimzett_hazszam>
+    <cimzett_epulet></cimzett_epulet>
+    <cimzett_lepcsohaz></cimzett_lepcsohaz>
+    <cimzett_emelet></cimzett_emelet>
+    <cimzett_ajto></cimzett_ajto>
+	<cimzett_postafiok>123.</cimzett_postafiok>
+    <sajat_azonosito>122333444455555</sajat_azonosito>
+ 	<tv_sajat_jelzes>12345678901234567890123456789012345678901234567890</tv_sajat_jelzes>
+	<tv_vonalkod>122333444455555</tv_vonalkod>
+	<tv_vonalkod_tipus>1</tv_vonalkod_tipus>   
+	<hiv_iratszam>12345678901234567890123456789012345678901234567890</hiv_iratszam>
+	<hiv_irat_fajta>12345678901234567890123456789012345678901234567890</hiv_irat_fajta>
+	<hiv_ertesito>A/1</hiv_ertesito>
+	<felvetel_datum>190318</felvetel_datum>
+  </kuldemeny>
+  <atvetel>
+    <idopont>190325_123456</idopont>
+	<atvevo_nev>Kovács István</atvevo_nev>
+	<atvetel_jogcim>C</atvetel_jogcim>
+  </atvetel>
+</kezbesitesi_igazolas>
+
