@@ -3,3 +3,4 @@
 ##RDY: encrypted exe translation
 ##RDY: handle "None" value - is it in the xml?
 ##RDY: define the default colnames by specification - make the output universal even if there is no data in the xml for some columns
+##RDY: copyright and ordering call to the excel output, format headers

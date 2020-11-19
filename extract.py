@@ -8,7 +8,7 @@ import sys
 from datetime import datetime
 import xml.etree.ElementTree as ET
 import xlwt 
-from xlwt import Workbook 
+from xlwt import Workbook, Formula 
 
 """ TODO: import this module, otherwise it's not safe
 import defusedxml
@@ -108,10 +108,27 @@ def table2xls(iTbl, iColnames, oFilename):
     # Workbook is created 
     wb = Workbook() 
     # add_sheet is used to create sheet. 
-    sheet1 = wb.add_sheet("kezb_"+ datetime.now().strftime("%m%d%y%H%M%S")) 
-    row, col = 0, 0
+    sheet1 = wb.add_sheet("kezb_"+ datetime.now().strftime("%m%d%y%H%M%S"), cell_overwrite_ok=True) 
+    sheet1.panes_frozen = True
+    sheet1.remove_splits = True
+    
+    sheet1.horz_split_pos = 5
+    sheet1.horz_split_first_visible = 5
+
+
+    row = 0 
+    col = 0
+    bold = xlwt.easyxf('font: bold 1') 
+    sheet1.write(row, col, 'Postai kézbesítési igazolások feldolgozása. A program szabadon felhasználható, kizárólag saját felelősségére!', bold)
+    row += 2
+    boldred = xlwt.easyxf('font: bold 1, color red;') 
+    #         row_start,row_end,col_start,col_end
+    sheet1.write_merge(2, 2, 0, 7, Formula('"Teljes körű megoldást szeretne? Kérjük, írjon e-mailt a "& HYPERLINK("mailto:develop@vipexkft.hu";"develop@vipexkft.hu") & " címre!"'), boldred)
+
+    row += 2
+    header = xlwt.easyxf('pattern: pattern solid, fore_colour gray40; font: bold 1, color white; borders: left thin, right thin, top thin, bottom thin')
     for aCol in iColnames:
-        sheet1.write(row, col, aCol)
+        sheet1.write(row, col, aCol, header)
         col += 1
     with open(oFilename, 'w') as outfile:
         for aRecord in iTbl:
