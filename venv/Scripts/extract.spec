@@ -30,4 +30,4 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir='P:\\Temp\\Tapio_Develop\\pyinst_temp',
-          console=True )
+          console=True , icon='P:\\Temp\\Tapio_Develop\\.local_misc\\icon8\\app.ico')

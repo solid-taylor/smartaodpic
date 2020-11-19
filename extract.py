@@ -7,6 +7,8 @@ import hashlib
 import sys
 from datetime import datetime
 import xml.etree.ElementTree as ET
+import xlwt 
+from xlwt import Workbook 
 
 """ TODO: import this module, otherwise it's not safe
 import defusedxml
@@ -102,10 +104,30 @@ def table2csv(iTbl, iColnames, oFilename):
             outfile.write(aRow)
     return True
 
+def table2xls(iTbl, iColnames, oFilename):
+    # Workbook is created 
+    wb = Workbook() 
+    # add_sheet is used to create sheet. 
+    sheet1 = wb.add_sheet("kezb_"+ datetime.now().strftime("%m%d%y%H%M%S")) 
+    row, col = 0, 0
+    for aCol in iColnames:
+        sheet1.write(row, col, aCol)
+        col += 1
+    with open(oFilename, 'w') as outfile:
+        for aRecord in iTbl:
+            col = 0
+            row += 1
+            for aCol in iColnames.keys():
+                if (aCol in aRecord.keys()):
+                    sheet1.write(row, col, aRecord[aCol])
+                    col += 1
+                else:
+                    col += 1
+    wb.save(oFilename) 
+    return True
+
 if (len(sys.argv) != 2):
     mypath, myfilename = os.path.split(os.path.abspath(__file__))
-    #print("No path specified! ---- Usage: exract.py path_of_files_to_check\n")
-    #raise SystemExit
     mypath = mypath + '\\'
 else:
     mypath = sys.argv[1]
@@ -121,9 +143,12 @@ print('Total of ' + str(c) +' .pdf files handled in the directory: ' )
 colnames['file_id'] = c
 colnames['file_source'] = c
 tbl  = normalize_table(tbl,colnames)
-success = table2csv(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".csv")
+#success = table2csv(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".csv")
+success = table2xls(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".xls")
 
 ##TODO: data --> SQL
 ##TODO: get the cleanupafter prop as (command-line) arg
+##TODO: if same-name column exists avoid collision (make a new colname "old2")
+##TODO: define the default colnames by specification - ake the output universal even if there is no data in the xml for some columns
 ##TODO: excel export: https://www.geeksforgeeks.org/writing-excel-sheet-using-python/ VAGY https://xlsxwriter.readthedocs.io/ kerdes, hogy melyik more lightweight
 ##TODO: encrypted exe translation
