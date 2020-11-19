@@ -1,3 +1,5 @@
 ##RDY: if doesn't get path, the search in it's own dir
 ##RDY: excel export: https://www.geeksforgeeks.org/writing-excel-sheet-using-python/ VAGY https://xlsxwriter.readthedocs.io/ kerdes, hogy melyik more lightweight
 ##RDY: encrypted exe translation
+##RDY: handle "None" value - is it in the xml?
+##RDY: define the default colnames by specification - make the output universal even if there is no data in the xml for some columns

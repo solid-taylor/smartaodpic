@@ -119,7 +119,7 @@ def table2xls(iTbl, iColnames, oFilename):
             row += 1
             for aCol in iColnames.keys():
                 if (aCol in aRecord.keys()):
-                    sheet1.write(row, col, aRecord[aCol])
+                    sheet1.write(row, col, aRecord[aCol].replace('None', ''))
                     col += 1
                 else:
                     col += 1
@@ -136,7 +136,52 @@ else:
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 c=0
 tbl=[]
-colnames={}
+
+#default specification by Hungarian Post Office
+colnames={
+'efj_adatok_efj_zaras' :  0,
+'efj_adatok_efj_szoftver' :  0,
+'efj_adatok_xsd_verzio' :  0,
+'felado_felado_megallapodas' :  0,
+'felado_felado_nev' :  0,
+'felado_felado_irsz' :  0,
+'felado_felado_hely' :  0,
+'felado_felado_kozterulet_nev' :  0,
+'felado_felado_kozterulet_jelleg' :  0,
+'felado_felado_hazszam' :  0,
+'felado_felado_kozelebbi_cim' :  0,
+'felado_felado_epulet' :  0,
+'felado_felado_lepcsohaz' :  0,
+'felado_felado_emelet' :  0,
+'felado_felado_ajto' :  0,
+'felado_felado_postafiok' :  0,
+'kuldemeny_azonosito' :  0,
+'atvetel_idopont' :  0,
+'atvetel_atvevo_nev' :  0,
+'atvetel_atvetel_jogcim' :  0,
+'atvetel_visszakuldes_oka' :  0,
+'kuldemeny_tv_sajat_jelzes' :  0,
+'kuldemeny_felvetel_datum' :  0,
+'kuldemeny_cimzett_nev' :  0,
+'kuldemeny_cimzett_irsz' :  0,
+'kuldemeny_cimzett_hely' :  0,
+'kuldemeny_cimzett_kozterulet_nev' :  0,
+'kuldemeny_cimzett_kozterulet_jelleg' :  0,
+'kuldemeny_cimzett_hazszam' :  0,
+'kuldemeny_cimzett_kozelebbi_cim' :  0,
+'kuldemeny_cimzett_epulet' :  0,
+'kuldemeny_cimzett_lepcsohaz' :  0,
+'kuldemeny_cimzett_emelet' :  0,
+'kuldemeny_cimzett_ajto' :  0,
+'kuldemeny_cimzett_postafiok' :  0,
+'kuldemeny_sajat_azonosito' :  0,
+'kuldemeny_tv_vonalkod' :  0,
+'kuldemeny_tv_vonalkod_tipus' :  0,
+'kuldemeny_hiv_iratszam' :  0,
+'kuldemeny_hiv_irat_fajta' :  0,
+'kuldemeny_hiv_ertesito' :  0
+}
+
 for f in onlyfiles:
     c += extractAttachments(mypath, f, True)  # set the last param to False if you want the see the temporary xml files
 print('Total of ' + str(c) +' .pdf files handled in the directory: ' )
@@ -149,4 +194,4 @@ success = table2xls(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%
 ##TODO: data --> SQL
 ##TODO: get the cleanupafter prop as (command-line) arg
 ##TODO: if same-name column exists avoid collision (make a new colname "old2")
-##TODO: define the default colnames by specification - ake the output universal even if there is no data in the xml for some columns
+##TODO: check if there is more than one notification info --> how it appears in the xml???
