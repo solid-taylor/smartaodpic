@@ -1,1 +1,3 @@
 ##RDY: if doesn't get path, the search in it's own dir
+##RDY: excel export: https://www.geeksforgeeks.org/writing-excel-sheet-using-python/ VAGY https://xlsxwriter.readthedocs.io/ kerdes, hogy melyik more lightweight
+##RDY: encrypted exe translation

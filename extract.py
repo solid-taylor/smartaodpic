@@ -150,5 +150,3 @@ success = table2xls(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%
 ##TODO: get the cleanupafter prop as (command-line) arg
 ##TODO: if same-name column exists avoid collision (make a new colname "old2")
 ##TODO: define the default colnames by specification - ake the output universal even if there is no data in the xml for some columns
-##TODO: excel export: https://www.geeksforgeeks.org/writing-excel-sheet-using-python/ VAGY https://xlsxwriter.readthedocs.io/ kerdes, hogy melyik more lightweight
-##TODO: encrypted exe translation
