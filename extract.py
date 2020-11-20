@@ -145,9 +145,13 @@ def table2xls(iTbl, iColnames, oFilename):
 
 if (len(sys.argv) != 2):
     mypath, myfilename = os.path.split(os.path.abspath(__file__))
-    mypath = mypath + '\\'
+    if sys.platform.startswith("win32") or sys.platform.startswith("cygwin"):
+        mypath = mypath + '\\'
+    else:
+        mypath = mypath + '/'
 else:
     mypath = sys.argv[1]
+
     mypath = mypath.replace('\\\\', '\\')
 
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
