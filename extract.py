@@ -8,7 +8,8 @@ import sys
 from datetime import datetime
 import xml.etree.ElementTree as ET
 import xlwt 
-from xlwt import Workbook, Formula 
+from xlwt import Workbook, Formula
+import sqlite3 
 
 """ TODO: import this module, otherwise it's not safe
 import defusedxml
@@ -115,7 +116,6 @@ def table2xls(iTbl, iColnames, oFilename):
     sheet1.horz_split_pos = 5
     sheet1.horz_split_first_visible = 5
 
-
     row = 0 
     col = 0
     bold = xlwt.easyxf('font: bold 1') 
@@ -123,7 +123,7 @@ def table2xls(iTbl, iColnames, oFilename):
     row += 2
     boldred = xlwt.easyxf('font: bold 1, color red;') 
     #         row_start,row_end,col_start,col_end
-    sheet1.write_merge(2, 2, 0, 7, Formula('"Teljes körű megoldást szeretne? Kérjük, írjon e-mailt a "& HYPERLINK("mailto:develop@vipexkft.hu";"develop@vipexkft.hu") & " címre!"'), boldred)
+    sheet1.write_merge(2, 2, 0, 8, Formula('"Teljes körű megoldást szeretne? Kérjük, írjon e-mailt a "& HYPERLINK("mailto:develop@vipexkft.hu";"develop@vipexkft.hu") & " címre!"'), boldred)
 
     row += 2
     header = xlwt.easyxf('pattern: pattern solid, fore_colour gray40; font: bold 1, color white; borders: left thin, right thin, top thin, bottom thin')
@@ -143,6 +143,27 @@ def table2xls(iTbl, iColnames, oFilename):
     wb.save(oFilename) 
     return True
 
+def table2sql(iTbl, iColnames, oFilename):
+    #connect to sql conn
+    with sqlite3.connect(oFilename) as db:
+            try:
+                paramstr = ', '.join(['?'] * len(iColnames))
+                columns = ', '.join(iColnames)
+                qry = 'INSERT INTO receipt ' + f"({colnamestr}) VALUES ({paramstr})"
+
+                cursor = db.cursor()
+                cursor.execute("INSERT INTO ledger (userid, symbol, unit, unitprice, direction) VALUES (?,?,?,?,1)", [session["user_id"], request.form.get('symbol'), request.form.get('unit'), request.form.get('price')])
+                db.commit()
+                return True
+            except:
+                return False
+    #generate qry
+    #execute qry
+    #cleanup - close conn
+    pass
+
+
+#------------------------------------------------    main code -----------------------------------------
 if (len(sys.argv) != 2):
     mypath, myfilename = os.path.split(os.path.abspath(__file__))
     mypath = mypath + '\\'
@@ -204,11 +225,15 @@ for f in onlyfiles:
 print('Total of ' + str(c) +' .pdf files handled in the directory: ' )
 colnames['file_id'] = c
 colnames['file_source'] = c
+##TODO add the new fields - userid-sessionid-etc here
+
 tbl  = normalize_table(tbl,colnames)
 #success = table2csv(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".csv")
-success = table2xls(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".xls")
+#success = table2xls(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".xls")
+success = table2sql(tbl,colnames, os.path.split(os.path.abspath(__file__))[0] + "\\database\\tertidata.db")
 
 ##TODO: data --> SQL
 ##TODO: get the cleanupafter prop as (command-line) arg
 ##TODO: if same-name column exists avoid collision (make a new colname "old2")
 ##TODO: check if there is more than one notification info --> how it appears in the xml???
+

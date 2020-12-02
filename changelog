@@ -4,3 +4,8 @@
 ##RDY: handle "None" value - is it in the xml?
 ##RDY: define the default colnames by specification - make the output universal even if there is no data in the xml for some columns
 ##RDY: copyright and ordering call to the excel output, format headers
+
+##RDY sqlite3 database created
+##RDY add userid, sessionid, created, updated to the receipt table
+##RDY userid --> FK to users table
+##RDY created, updated timestamp generator trigger
