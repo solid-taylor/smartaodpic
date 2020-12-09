@@ -15,6 +15,55 @@ import sqlite3
 import defusedxml
 import defusedxml.ElementTree as ET """
 
+#default fields specificated by Hungarian Post Office & source-user fields
+colnames={
+'efj_adatok_efj_zaras' :  0,
+'efj_adatok_efj_szoftver' :  0,
+'efj_adatok_xsd_verzio' :  0,
+'felado_felado_megallapodas' :  0,
+'felado_felado_nev' :  0,
+'felado_felado_irsz' :  0,
+'felado_felado_hely' :  0,
+'felado_felado_kozterulet_nev' :  0,
+'felado_felado_kozterulet_jelleg' :  0,
+'felado_felado_hazszam' :  0,
+'felado_felado_kozelebbi_cim' :  0,
+'felado_felado_epulet' :  0,
+'felado_felado_lepcsohaz' :  0,
+'felado_felado_emelet' :  0,
+'felado_felado_ajto' :  0,
+'felado_felado_postafiok' :  0,
+'kuldemeny_azonosito' :  0,
+'atvetel_idopont' :  0,
+'atvetel_atvevo_nev' :  0,
+'atvetel_atvetel_jogcim' :  0,
+'atvetel_visszakuldes_oka' :  0,
+'kuldemeny_tv_sajat_jelzes' :  0,
+'kuldemeny_felvetel_datum' :  0,
+'kuldemeny_cimzett_nev' :  0,
+'kuldemeny_cimzett_irsz' :  0,
+'kuldemeny_cimzett_hely' :  0,
+'kuldemeny_cimzett_kozterulet_nev' :  0,
+'kuldemeny_cimzett_kozterulet_jelleg' :  0,
+'kuldemeny_cimzett_hazszam' :  0,
+'kuldemeny_cimzett_kozelebbi_cim' :  0,
+'kuldemeny_cimzett_epulet' :  0,
+'kuldemeny_cimzett_lepcsohaz' :  0,
+'kuldemeny_cimzett_emelet' :  0,
+'kuldemeny_cimzett_ajto' :  0,
+'kuldemeny_cimzett_postafiok' :  0,
+'kuldemeny_sajat_azonosito' :  0,
+'kuldemeny_tv_vonalkod' :  0,
+'kuldemeny_tv_vonalkod_tipus' :  0,
+'kuldemeny_hiv_iratszam' :  0,
+'kuldemeny_hiv_irat_fajta' :  0,
+'kuldemeny_hiv_ertesito' :  0,
+'file_id': 0,
+'file_source' : 0,
+'userid' : 0,
+'sessionid' : 0
+}
+
 def getAttachments(reader):
     """
     Retrieves the file attachments of the PDF as a dictionary of file names
@@ -34,7 +83,7 @@ def getAttachments(reader):
             attachments[name] = fData
     return attachments
 
-def extractAttachments(path, filename, cleanup_after):
+def extractAttachment(path, filename, oTbl, cleanup_after, userid = '0', sessionid = '0'):
     if (filename[-3:].lower() == 'pdf'):
         handler = open(path + filename, 'rb')
         reader = PyPDF2.PdfFileReader(handler, strict=False)
@@ -51,7 +100,9 @@ def extractAttachments(path, filename, cleanup_after):
                     hhex = md5_hash.hexdigest()
                     aRecord['file_id'] = hhex
                     aRecord['file_source'] = path + filename
-                    tbl.append(aRecord)
+                    aRecord['userid'] = userid
+                    aRecord['sessionid'] = sessionid
+                    oTbl.append(aRecord)
             if (cleanup_after):
                 remove(oFileName)    
         return 1
@@ -143,25 +194,6 @@ def table2xls(iTbl, iColnames, oFilename):
     wb.save(oFilename) 
     return True
 
-def table2sql(iTbl, iColnames, oFilename):
-    #connect to sql conn
-    with sqlite3.connect(oFilename) as db:
-            try:
-                paramstr = ', '.join(['?'] * len(iColnames))
-                columns = ', '.join(iColnames)
-                qry = 'INSERT INTO receipt ' + f"({colnamestr}) VALUES ({paramstr})"
-
-                cursor = db.cursor()
-                cursor.execute("INSERT INTO ledger (userid, symbol, unit, unitprice, direction) VALUES (?,?,?,?,1)", [session["user_id"], request.form.get('symbol'), request.form.get('unit'), request.form.get('price')])
-                db.commit()
-                return True
-            except:
-                return False
-    #generate qry
-    #execute qry
-    #cleanup - close conn
-    pass
-
 
 #------------------------------------------------    main code -----------------------------------------
 if (len(sys.argv) != 2):
@@ -172,71 +204,20 @@ if (len(sys.argv) != 2):
         mypath = mypath + '/'
 else:
     mypath = sys.argv[1]
-
     mypath = mypath.replace('\\\\', '\\')
 
-onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 c=0
-tbl=[]
+tbl = []
 
-#default specification by Hungarian Post Office
-colnames={
-'efj_adatok_efj_zaras' :  0,
-'efj_adatok_efj_szoftver' :  0,
-'efj_adatok_xsd_verzio' :  0,
-'felado_felado_megallapodas' :  0,
-'felado_felado_nev' :  0,
-'felado_felado_irsz' :  0,
-'felado_felado_hely' :  0,
-'felado_felado_kozterulet_nev' :  0,
-'felado_felado_kozterulet_jelleg' :  0,
-'felado_felado_hazszam' :  0,
-'felado_felado_kozelebbi_cim' :  0,
-'felado_felado_epulet' :  0,
-'felado_felado_lepcsohaz' :  0,
-'felado_felado_emelet' :  0,
-'felado_felado_ajto' :  0,
-'felado_felado_postafiok' :  0,
-'kuldemeny_azonosito' :  0,
-'atvetel_idopont' :  0,
-'atvetel_atvevo_nev' :  0,
-'atvetel_atvetel_jogcim' :  0,
-'atvetel_visszakuldes_oka' :  0,
-'kuldemeny_tv_sajat_jelzes' :  0,
-'kuldemeny_felvetel_datum' :  0,
-'kuldemeny_cimzett_nev' :  0,
-'kuldemeny_cimzett_irsz' :  0,
-'kuldemeny_cimzett_hely' :  0,
-'kuldemeny_cimzett_kozterulet_nev' :  0,
-'kuldemeny_cimzett_kozterulet_jelleg' :  0,
-'kuldemeny_cimzett_hazszam' :  0,
-'kuldemeny_cimzett_kozelebbi_cim' :  0,
-'kuldemeny_cimzett_epulet' :  0,
-'kuldemeny_cimzett_lepcsohaz' :  0,
-'kuldemeny_cimzett_emelet' :  0,
-'kuldemeny_cimzett_ajto' :  0,
-'kuldemeny_cimzett_postafiok' :  0,
-'kuldemeny_sajat_azonosito' :  0,
-'kuldemeny_tv_vonalkod' :  0,
-'kuldemeny_tv_vonalkod_tipus' :  0,
-'kuldemeny_hiv_iratszam' :  0,
-'kuldemeny_hiv_irat_fajta' :  0,
-'kuldemeny_hiv_ertesito' :  0
-}
-
+onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 for f in onlyfiles:
-    c += extractAttachments(mypath, f, True)  # set the last param to False if you want the see the temporary xml files
-print('Total of ' + str(c) +' .pdf files handled in the directory: ' )
-colnames['file_id'] = c
-colnames['file_source'] = c
-##TODO add the new fields - userid-sessionid-etc here
-
+    c += extractAttachment(mypath, f, tbl, True)  # set the last param to False if you want the see the temporary xml files
 tbl  = normalize_table(tbl,colnames)
-#success = table2csv(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".csv")
-#success = table2xls(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".xls")
-success = table2sql(tbl,colnames, os.path.split(os.path.abspath(__file__))[0] + "\\database\\tertidata.db")
+print('Total of ' + str(c) +' .pdf files handled in the directory: ' )
 
-##TODO: data --> SQL
+#success = table2csv(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".csv")
+success = table2xls(tbl,colnames, mypath + "result_"+ datetime.now().strftime("%m%d%y%H%M%S") +".xls")
+
 ##TODO: get the cleanupafter prop as (command-line) arg
 ##TODO: if same-name column exists avoid collision (make a new colname "old2")
 ##TODO: check if there is more than one notification info --> how it appears in the xml???

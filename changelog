@@ -9,3 +9,9 @@
 ##RDY add userid, sessionid, created, updated to the receipt table
 ##RDY userid --> FK to users table
 ##RDY created, updated timestamp generator trigger
+##RDY: data --> SQL
+
+##RDY: standalone and future system version separated - standalone left quite finished
+
+##RDY Debug user reminder timedserializer does not work...
+##RDY define secret-key (for user activation, etc.) application-wide
