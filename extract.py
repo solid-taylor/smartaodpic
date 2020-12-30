@@ -170,11 +170,11 @@ def table2xls(iTbl, iColnames, oFilename):
     row = 0 
     col = 0
     bold = xlwt.easyxf('font: bold 1') 
-    sheet1.write(row, col, 'Postai kézbesítési igazolások feldolgozása. A program szabadon felhasználható, kizárólag saját felelősségére!', bold)
+    sheet1.write(row, col, 'Data extraction from Advice of Delivery Slips of the Hungarian Post. Free to use on "as is" basis!', bold)
     row += 2
     boldred = xlwt.easyxf('font: bold 1, color red;') 
     #         row_start,row_end,col_start,col_end
-    sheet1.write_merge(2, 2, 0, 8, Formula('"Teljes körű megoldást szeretne? Kérjük, írjon e-mailt a "& HYPERLINK("mailto:develop@vipexkft.hu";"develop@vipexkft.hu") & " címre!"'), boldred)
+    sheet1.write_merge(2, 2, 0, 8, Formula('"You need more complex solution? Send a mail to "& HYPERLINK("mailto:develop@vipexkft.hu";"develop@vipexkft.hu") & "!"'), boldred)
 
     row += 2
     header = xlwt.easyxf('pattern: pattern solid, fore_colour gray40; font: bold 1, color white; borders: left thin, right thin, top thin, bottom thin')

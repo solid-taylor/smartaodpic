@@ -397,6 +397,7 @@ else:
 
 
 ##TODO-CHK IF RDY Handle exeptions on password change ie:link expired, bad hash ect.
+##TODO globalcons.py-ba visszaírni az értékeket, amiket a .git kitörölt 
 
 ##TODO: validate the files BEFORE try to store --> if allready stored - inform the user that it has allready been stored before
 ##TODO: get the cleanupafter prop as (command-line) arg

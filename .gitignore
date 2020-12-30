@@ -8,4 +8,4 @@ extract
 pyint_work
 data.xml
 .gitignore
-globalcons_filled.py
+globalcons.py
